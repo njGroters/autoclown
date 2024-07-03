@@ -1,4 +1,6 @@
+#![allow(unused_imports, dead_code, unused_variables)]
 use std::default;
+use std::time::Instant;
 use xcap::Window;
 
 use eframe::{
@@ -22,32 +24,33 @@ impl App for AutoClown {
 }
 
 fn normalization(filename: &str) -> String {
-    filename
-        .replace("|", "")
-        .replace("\\", "")
-        .replace(":", "")
-        .replace("/", "")
+    filename.replace(['|', '\\', ':', '/'], "")
 }
 
 fn main() {
+    let start = Instant::now();
+
     let windows = Window::all().unwrap();
 
     let mut i = 0;
 
     for window in windows {
-        if window.is_minimized() {
+        if window.title() != "Freddy Fazbear's Pizzeria Simulator" {
             continue;
         }
 
+        /*
         println!(
             "Window: {:?} {:?} {:?}",
             window.title(),
             (window.x(), window.y(), window.width(), window.height()),
             (window.is_minimized(), window.is_maximized())
         );
+        */
 
         let image = window.capture_image().unwrap();
 
+        /*
         image
             .save(format!(
                 "target/window--{}--{}.png",
@@ -55,9 +58,12 @@ fn main() {
                 normalization(window.title())
             ))
             .unwrap();
+        */
 
         i += 1;
     }
+
+    println!("Took: {:?}", start.elapsed());
 
     let app: AutoClown = AutoClown;
     let win_option = NativeOptions::default();
