@@ -1,4 +1,5 @@
 use std::default;
+use xcap::Window;
 
 use eframe::{
     egui::{CentralPanel, Ui},
@@ -20,7 +21,44 @@ impl App for AutoClown {
     }
 }
 
+fn normalization(filename: &str) -> String {
+    filename
+        .replace("|", "")
+        .replace("\\", "")
+        .replace(":", "")
+        .replace("/", "")
+}
+
 fn main() {
+    let windows = Window::all().unwrap();
+
+    let mut i = 0;
+
+    for window in windows {
+        if window.is_minimized() {
+            continue;
+        }
+
+        println!(
+            "Window: {:?} {:?} {:?}",
+            window.title(),
+            (window.x(), window.y(), window.width(), window.height()),
+            (window.is_minimized(), window.is_maximized())
+        );
+
+        let image = window.capture_image().unwrap();
+
+        image
+            .save(format!(
+                "target/window--{}--{}.png",
+                i,
+                normalization(window.title())
+            ))
+            .unwrap();
+
+        i += 1;
+    }
+
     let app: AutoClown = AutoClown;
     let win_option = NativeOptions::default();
 
