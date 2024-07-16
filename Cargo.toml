@@ -8,3 +8,5 @@ edition = "2021"
 [dependencies]
 xcap = "0.0.10"
 eframe = "0.14.0"
+imageproc = "0.25.0"
+console = "0.15.8"
