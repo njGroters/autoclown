@@ -6,31 +6,7 @@ use xcap::{
     Window,
 };
 
-use eframe::{
-    egui::{CentralPanel, Ui},
-    epi::App,
-    run_native, NativeOptions,
-};
-
 use console::Term;
-
-struct AutoClown;
-
-impl App for AutoClown {
-    fn update(&mut self, ctx: &eframe::egui::CtxRef, frame: &mut eframe::epi::Frame<'_>) {
-        CentralPanel::default().show(ctx, |ui: &mut Ui| {
-            ui.label("hello world!");
-        });
-    }
-
-    fn name(&self) -> &str {
-        "AutoClown"
-    }
-}
-
-fn normalization(filename: &str) -> String {
-    filename.replace(['|', '\\', ':', '/'], "")
-}
 
 struct Subwindow {
     x: u32,
@@ -116,8 +92,4 @@ fn main() {
     }
 
     println!("Took: {:?}", start.elapsed());
-
-    let app: AutoClown = AutoClown;
-    let win_option = NativeOptions::default();
-    //run_native(Box::new(app), win_option);
 }
