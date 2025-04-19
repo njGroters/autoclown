@@ -23,5 +23,4 @@ cargo run
 
 (You may need to press enter once to start the app) 
 
-![Lemonade clown's model from FNaF 6](https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/2/24/LemonadeClown.png)
 ![Fruit punch clown's model from FNaF 6](https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/c/cb/FruitPunchClown.png)
